@@ -8,6 +8,11 @@ const openai = new OpenAI({
 });
 
 export async function POST(req: Request) {
+  const session = req.cookies.get("next-auth.session-token");
+  if (!session) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+
   const { messages } = await req.json();
 
   const response = await openai.chat.completions.create({

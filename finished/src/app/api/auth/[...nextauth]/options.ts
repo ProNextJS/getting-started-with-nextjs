@@ -1,4 +1,3 @@
-import NextAuth from "next-auth";
 import { CallbacksOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 
@@ -16,6 +15,4 @@ const authOptions = {
   ],
 };
 
-const handler = NextAuth(authOptions);
-
-export { handler as GET, handler as POST };
+export default authOptions;
