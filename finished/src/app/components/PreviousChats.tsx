@@ -1,4 +1,4 @@
-import { getServerSession } from "next-auth";
+import { auth as getServerSession } from "@/app/auth/[...nextauth]/route";
 import Link from "next/link";
 
 import { Separator } from "@/components/ui/separator";

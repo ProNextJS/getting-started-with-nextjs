@@ -1,5 +1,5 @@
 "use server";
-import { getServerSession } from "next-auth";
+import { auth as getServerSession } from "@/app/auth/[...nextauth]/route";
 
 import { createChat, updateChat as updateChatMessages } from "@/db";
 

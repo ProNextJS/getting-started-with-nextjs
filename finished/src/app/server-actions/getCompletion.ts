@@ -1,6 +1,6 @@
 "use server";
 import OpenAI from "openai";
-import { getServerSession } from "next-auth";
+import { auth as getServerSession } from "@/app/auth/[...nextauth]/route";
 
 import { createChat, updateChat } from "@/db";
 
