@@ -1,5 +1,5 @@
 import { redirect, notFound } from "next/navigation";
-import { auth as getServerSession } from "@/app/auth/[...nextauth]/route";
+import { auth as getServerSession } from "@/auth";
 
 import Chat from "@/app/components/Chat";
 

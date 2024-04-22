@@ -1,4 +1,4 @@
-import { auth as getServerSession } from "@/app/auth/[...nextauth]/route";
+import { auth as getServerSession } from "@/auth";
 
 import ChatMenu from "@/app/components/ChatMenu";
 

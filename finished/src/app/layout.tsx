@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import Link from "next/link";
 import { SessionProvider } from "next-auth/react";
 
-import { signIn, signOut, auth } from "@/app/auth/[...nextauth]/route";
+import { signIn, signOut, auth } from "@/auth";
 
 import UserButton from "./components/UserButton";
 

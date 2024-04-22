@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 import { OpenAIStream, StreamingTextResponse } from "ai";
 import { NextRequest } from "next/server";
-import { auth } from "@/app/auth/[...nextauth]/route";
+import { auth } from "@/auth";
 
 export const runtime = "edge";
 
