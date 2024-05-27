@@ -1,5 +1,7 @@
 import OpenAI from "openai";
 import { OpenAIStream, StreamingTextResponse } from "ai";
+import { NextRequest } from "next/server";
+import { auth } from "@/auth";
 
 export const runtime = "edge";
 
@@ -7,12 +9,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
 });
 
-export async function POST(req: Request) {
-  const session = req.cookies.get("next-auth.session-token");
-  if (!session) {
-    return new Response("Unauthorized", { status: 401 });
-  }
-
+export const POST = auth(async function POST(req: NextRequest) {
   const { messages } = await req.json();
 
   const response = await openai.chat.completions.create({
@@ -24,4 +21,4 @@ export async function POST(req: Request) {
   const stream = OpenAIStream(response);
 
   return new StreamingTextResponse(stream);
-}
+});

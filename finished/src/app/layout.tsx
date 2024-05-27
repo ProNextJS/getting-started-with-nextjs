@@ -37,7 +37,7 @@ export default async function RootLayout({
   }
 
   return (
-    <SessionProvider basePath={"/api/auth"} session={session}>
+    <SessionProvider basePath="/api/auth" session={session}>
       <html lang="en">
         <body className={`${inter.className} px-2 md:px-5`}>
           <header className="text-white font-bold bg-green-900 text-2xl p-2 mb-3 rounded-b-lg shadow-gray-700 shadow-lg flex">

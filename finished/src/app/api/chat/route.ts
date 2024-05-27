@@ -9,8 +9,6 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
 });
 
-export const dynamic = "force-dynamic";
-
 export const POST = auth(async function POST(req: NextRequest) {
   const { messages } = await req.json();
 

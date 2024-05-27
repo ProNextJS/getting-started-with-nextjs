@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { getServerSession } from "next-auth";
+import { auth as getServerSession } from "@/auth";
 
 import { Separator } from "@/components/ui/separator";
 import Chat from "@/app/components/Chat";

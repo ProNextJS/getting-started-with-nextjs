@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
-import { SessionProvider } from "./components/SessionProvider";
+import { SessionProvider } from "next-auth/react";
+
+import { signIn, signOut, auth } from "@/auth";
+
 import UserButton from "./components/UserButton";
 
 import "./globals.css";
@@ -13,15 +16,28 @@ export const metadata: Metadata = {
   description: "ChatGPT brought to you by NextJS",
 };
 
-export default function RootLayout({
+export const dynamic = "force-dynamic";
+
+export default async function RootLayout({
   children,
   chats,
 }: Readonly<{
   children: React.ReactNode;
   chats: React.ReactNode;
 }>) {
+  const session = await auth();
+  if (session?.user) {
+    // TODO: Look into https://react.dev/reference/react/experimental_taintObjectReference
+    // filter out sensitive data before passing to client.
+    session.user = {
+      name: session.user.name,
+      email: session.user.email,
+      image: session.user.image,
+    };
+  }
+
   return (
-    <SessionProvider>
+    <SessionProvider basePath="/api/auth" session={session}>
       <html lang="en">
         <body className={`${inter.className} px-2 md:px-5`}>
           <header className="text-white font-bold bg-green-900 text-2xl p-2 mb-3 rounded-b-lg shadow-gray-700 shadow-lg flex">
@@ -32,7 +48,16 @@ export default function RootLayout({
               </Link>
             </div>
             <div>
-              <UserButton />
+              <UserButton
+                onSignIn={async () => {
+                  "use server";
+                  await signIn();
+                }}
+                onSignOut={async () => {
+                  "use server";
+                  await signOut();
+                }}
+              />
             </div>
           </header>
           <div className="flex flex-col md:flex-row">

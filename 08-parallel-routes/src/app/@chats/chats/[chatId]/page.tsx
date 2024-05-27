@@ -1,4 +1,4 @@
-import { getServerSession } from "next-auth";
+import { auth as getServerSession } from "@/auth";
 
 import ChatMenu from "@/app/components/ChatMenu";
 
