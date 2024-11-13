@@ -16,8 +16,6 @@ export const metadata: Metadata = {
   description: "ChatGPT brought to you by NextJS",
 };
 
-export const dynamic = "force-dynamic";
-
 export default async function RootLayout({
   children,
   chats,

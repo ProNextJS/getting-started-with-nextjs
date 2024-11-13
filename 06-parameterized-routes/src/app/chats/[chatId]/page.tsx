@@ -5,13 +5,12 @@ import Chat from "@/app/components/Chat";
 
 import { getChat } from "@/db";
 
-export const dynamic = "force-dynamic";
-
 export default async function ChatDetail({
-  params: { chatId },
+  params,
 }: {
-  params: { chatId: string };
+  params: Promise<{ chatId: string }>;
 }) {
+  const { chatId } = await params;
   const chat = await getChat(+chatId);
   if (!chat) {
     return notFound();
